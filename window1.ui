@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>firstwindow</class>
+ <widget class="QWidget" name="firstwindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>301</width>
+    <height>233</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QPushButton{
+background-color: rgb(255, 255, 53);
+width:100px;
+length:200px;
+font-size: 14px;
+font-weight:bold;
+border:none;
+text-align:center;
+}
+QPushButton:hover{
+background-color:silver;
+}
+QPushButton:pressed{
+background-color:rgb(96, 255, 39);
+}
+QLabel{
+background-color:rgb(96, 255, 39);
+width:100px;
+length:200px;
+font-size: 14px;
+font-weight:bold;
+border:none;
+text-align:center;
+}
+
+</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>261</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel {
+text-align: center
+}
+</string>
+      </property>
+      <property name="text">
+       <string>             Выберите Excel файл:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Импортировать</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
