@@ -6,6 +6,9 @@ from window1 import Ui_firstwindow
 from window2 import Ui_secondwindow
 
 
+ui2=0
+
+
 app = QtWidgets.QApplication(sys.argv)
 first_window = QtWidgets.QWidget()
 ui = Ui_firstwindow()
@@ -14,7 +17,7 @@ first_window.show()
 
 
 def open_second_window():
-    global second_window
+    global second_window,ui
     second_window = QtWidgets.QWidget()
     ui = Ui_secondwindow()
     ui.setupUi(second_window)
@@ -24,10 +27,13 @@ def open_second_window():
 
 def im_file():
     file_name = ui.lineEdit.text()
-
-    print(file_name)
+    data = pd.read_excel(file_name, sheet_name='ГРП')
+    dummy = pd.read_excel(file_name, sheet_name='МЭР')
+    print(data.shape, dummy.shape, file_name)
 
 
 ui.pushButton.clicked.connect(im_file)
 ui.pushButton.clicked.connect(open_second_window)
+
+
 sys.exit(app.exec_())
