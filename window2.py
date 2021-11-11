@@ -35,7 +35,7 @@ class Ui_secondwindow(object):
 "background-color:rgb(121, 173, 255);\n"
 "width:100px;\n"
 "length:200px;\n"
-"font-size: 14px;\n"
+"font-size: 11px;\n"
 "font-weight:bold;\n"
 "border:none;\n"
 "text-align:center;\n"
@@ -99,7 +99,7 @@ class Ui_secondwindow(object):
         secondwindow.setWindowTitle(_translate("secondwindow", "Form"))
         self.label.setText(_translate("secondwindow", "Добавить \"_ГРП\" к номеру скважины:"))
         self.label_2.setText(_translate("secondwindow", "Удалить строки с нулевым дебитом:"))
-        self.label_3.setText(_translate("secondwindow", "Удалить скважины с историей меньше 5 месяцев:"))
+        self.label_3.setText(_translate("secondwindow", "!НАЖИМАТЬ ПЕРВОЙ! Удалить скважины с короткой историей:"))
         self.label_4.setText(_translate("secondwindow", "Продлить пластовое значение, если оно нулевое:"))
         self.pushButton.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_2.setText(_translate("secondwindow", "Выполнить"))
