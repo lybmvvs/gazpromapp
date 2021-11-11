@@ -19,7 +19,7 @@ field like *TYLE.xlsx*
   * name of the column with the well number: *'Скважина №'*
   * name of the column with the date of the research: *'Дата'*
   * name of the column with the reservoir pressure: *'Пластовое давление (ТР), атм'*
-* Lastly you can press the yellow *Экспортировать Excel файл* button and get a new **.xlsx** file called *MER_new.xlsx*!
+* Lastly you can press the yellow *Экспорт Excel файла* button and get a new **.xlsx** file called *MER_new.xlsx*!
 * Good luck!
 
 
@@ -42,5 +42,5 @@ field like *TYLE.xlsx*
   * название столбца с номером скважины: *'Скважина №'*
   * название столбца с датой исследований: *'Дата'*
   * название столбца с пластовым давлением: *'Пластовое давление (ТР), атм'*
-* Последним шагом вы можете нажать желтую кнопку *Экспортировать Excel файл* и получить новый **.xlsx** файл под названием *MER_new.xlsx*!
+* Последним шагом вы можете нажать желтую кнопку *Экспорт Excel файла* и получить новый **.xlsx** файл под названием *MER_new.xlsx*!
 * Удачи!
