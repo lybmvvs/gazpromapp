@@ -2,7 +2,7 @@ import sys
 import datetime
 import pandas as pd
 import numpy as np
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
 from window1 import Ui_firstwindow
 from window2 import Ui_secondwindow
 
