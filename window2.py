@@ -98,8 +98,8 @@ class Ui_secondwindow(object):
         _translate = QtCore.QCoreApplication.translate
         secondwindow.setWindowTitle(_translate("secondwindow", "Form"))
         self.label.setText(_translate("secondwindow", "Добавить \"_ГРП\" к номеру скважины:"))
-        self.label_2.setText(_translate("secondwindow", "Удалить строки с нулевым дебитом:"))
-        self.label_3.setText(_translate("secondwindow", "!НАЖИМАТЬ ПЕРВОЙ! Удалить скважины с короткой историей:"))
+        self.label_2.setText(_translate("secondwindow", "!НАЖИМАТЬ ПЕРВОЙ! Удалить строки с нулевым дебитом:"))
+        self.label_3.setText(_translate("secondwindow", "!НАЖИМАТЬ ВТОРОЙ! Удалить скважины с короткой историей:"))
         self.label_4.setText(_translate("secondwindow", "Продлить пластовое значение, если оно нулевое:"))
         self.pushButton.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_2.setText(_translate("secondwindow", "Выполнить"))
