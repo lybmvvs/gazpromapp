@@ -8,10 +8,9 @@ where the **.exe** file locates.
 * Secondly print the **name** of your **.xlsx** file in input 
 field like *TYLE.xlsx*
 * Press buttons only **once**!
-* If you need to clear your file out of lines which have **zero oil production rate** then you need to use the *Удалить строки с нулевым дебитом* button. If you need this function **PRESS THIS BUTTON FIRST!**
 * If you need to clear your file out of wells which have the history
 **less than 6 month** then you need to use the *Удалить скважины с 
-короткой историей* button. If you need this function **PRESS THIS BUTTON SECOND!**
+короткой историей* button. If you need this function **PRESS THIS BUTTON FIRST!**
 * Check that in excel sheets and column names are:
   * sheet with the hydraulic fracturing of the formation data: *'ГРП'*
   * sheet with the МЭР data: *'МЭР'*
@@ -32,11 +31,9 @@ field like *TYLE.xlsx*
 * Далее: ввести в поле для ввода текста название своего файла в виде
 *TYLE.xlsx*
 * Нажимайте кнопку только **один раз!**
-* Если вам нужно убрать из вашего файла строки с нулевым дебитом по нефти, то следует нажать 
-кнопку *Удалить строки с нулевым дебитом*. Если вам нужна данная функция, то **НАЖМИТЕ НА ЭТУ КНОПКУ ПЕРВОЙ!**
 * Если вам нужно убрать из вашего файла скважины, история работы которых
 **менее 6 месяцев**, то вам нужно обратиться к кнопке *Удалить скважины с 
-короткой историей*. Если вам нужна данная функция, **НАЖМИТЕ НА ЭТУ КНОПКУ ВТОРОЙ!**
+короткой историей*. Если вам нужна данная функция, **НАЖМИТЕ НА ЭТУ КНОПКУ ПЕРВОЙ!**
 * Проверьте, что названия листов и столбцов в excel-файле следующие:
   * лист с данными ГРП: *'ГРП'*
   * лист с данными МЭР: *'МЭР'*
