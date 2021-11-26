@@ -44,12 +44,25 @@ def open_second_window():
 
     class Plus_grp(File_functions):
         def add_grp(self):
-            global dummy
+            global dummy,data
+            no_grp = data.groupby('Скважина №').agg(
+                {'ГС/ННС': lambda x:
+                x.tolist()}
+            )
+            no_grp.reset_index(inplace=True)
+            no_grp['ГРП?'] = no_grp.apply(
+                lambda x:
+                0 if 'ГРП' not in str(x['ГС/ННС'])
+                else 1, axis=1)
+            no_grp = no_grp.drop(no_grp[no_grp['ГРП?'] == 1].index)
+            spisok = no_grp['Скважина №'].tolist()
             step = data.groupby(target).agg(
                 {date_column_name: lambda x:
                 x.tolist()[0]
                 if len(x.tolist()) == 1 else x.tolist()[1]}
             )
+            step.reset_index(inplace=True)
+            step = step[~step['Скважина №'].isin(spisok)].reset_index(drop=True)
             dummy = dummy.merge(step, on=target)
             dummy[target] = dummy.apply(
                 lambda x:
