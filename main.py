@@ -77,8 +77,19 @@ def open_second_window():
 
     class Debit(File_functions):
         def delete_zero_debit(self):
-            global dummy
+            global dummy,data
+            dummy['Index'] = dummy.index
+            dummy1 = dummy.drop(dummy[dummy['Пластовое давление (ТР), атм'] != 0].index)
+            dummy1 = dummy1.drop(dummy1[dummy1['Забойное давление (ТР), атм'] != 0].index)
+            wells_del_both = dummy1['Index'].tolist()
+            dummy = dummy[~dummy['Index'].isin(wells_del_both)].reset_index(drop=True)
+
             dummy = dummy.drop(dummy[dummy['Дебит нефти, т/сут'] == 0].index)
+            n = 1
+            z = dummy['Пласт'].value_counts()[:n].index.tolist()
+            plast = str(z[0])
+            dummy = dummy.drop(dummy[dummy['Пласт'] != plast].index).reset_index(
+                drop=True)
 
         ui.pushButton_2.clicked.connect(delete_zero_debit)
 
