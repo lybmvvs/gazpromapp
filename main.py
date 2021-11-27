@@ -81,8 +81,16 @@ def open_second_window():
             dummy['Index'] = dummy.index
             dummy1 = dummy.drop(dummy[dummy['Пластовое давление (ТР), атм'] != 0].index)
             dummy1 = dummy1.drop(dummy1[dummy1['Забойное давление (ТР), атм'] != 0].index)
-            wells_del_both = dummy1['Index'].tolist()
-            dummy = dummy[~dummy['Index'].isin(wells_del_both)].reset_index(drop=True)
+            dummy1 = dummy1.groupby('Скважина №').agg(
+                {'Index': lambda x:
+                x.tolist()})
+            dummy1['кол'] = dummy1.apply(lambda x: len(x['Index']), axis=1)
+            dummy1 = dummy1.drop(dummy1[dummy1['кол'] < 3].index)
+
+            delete = []
+            for i in dummy1['Index']:
+                delete += i
+            dummy = dummy[~dummy['Index'].isin(delete)].reset_index(drop=True)
 
             dummy = dummy.drop(dummy[dummy['Дебит нефти, т/сут'] == 0].index)
             n = 1
