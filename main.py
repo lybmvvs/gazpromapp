@@ -134,6 +134,7 @@ def open_second_window():
         global dummy
         dummy = dummy.drop(['Index'], axis=1)
         dummy.to_excel('MER_new.xlsx')
+        print('yep')
 
     ui.pushButton_5.clicked.connect(export_final)
 
