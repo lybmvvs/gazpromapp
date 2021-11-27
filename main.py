@@ -124,13 +124,7 @@ def open_second_window():
     class Pressure(File_functions):
         def sub_zero_pressure(self):
             global dummy
-            dummy['Предыдущее пластовое давление'] = dummy['Пластовое давление (ТР), атм'].shift(-1)
-
-            dummy['Пластовое давление (ТР), атм'], dummy['Предыдущее пластовое давление'] = np.where(
-                dummy['Пластовое давление (ТР), атм'] == 0,
-                (dummy['Предыдущее пластовое давление'], dummy['Пластовое давление (ТР), атм']),
-                (dummy['Пластовое давление (ТР), атм'], dummy['Предыдущее пластовое давление']))
-            dummy = dummy.drop('Предыдущее пластовое давление', axis=1)
+            dummy["Пластовое давление (ТР), атм"] = dummy["Пластовое давление (ТР), атм"].replace(0, np.nan).bfill()
 
         ui.pushButton_4.clicked.connect(sub_zero_pressure)
 
@@ -138,6 +132,7 @@ def open_second_window():
 
     def export_final():
         global dummy
+        dummy = dummy.drop(['Index'], axis=1)
         dummy.to_excel('MER_new.xlsx')
 
     ui.pushButton_5.clicked.connect(export_final)
