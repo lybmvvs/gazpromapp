@@ -92,6 +92,18 @@ def open_second_window():
                 delete += i
             dummy = dummy[~dummy['Index'].isin(delete)].reset_index(drop=True)
 
+            dummy2 = dummy[dummy['Забойное давление (ТР), атм'].isna()]
+            dummy2 = dummy2.groupby('Скважина №').agg(
+                {'Index': lambda x:
+                x.tolist()})
+            dummy2['забойки'] = dummy2.apply(lambda x: len(x['Index']), axis=1)
+            dummy2 = dummy2.drop(dummy2[dummy2['забойки'] < 3].index)
+            # wells_del_both=dummy1['Index'].tolist()
+            delete_wellbore = []
+            for i in dummy2['Index']:
+                delete_wellbore += i
+            dummy = dummy[~dummy['Index'].isin(delete_wellbore)].reset_index(drop=True)
+
             dummy = dummy.drop(dummy[dummy['Дебит нефти, т/сут'] == 0].index)
             n = 1
             z = dummy['Пласт'].value_counts()[:n].index.tolist()
@@ -125,6 +137,12 @@ def open_second_window():
         def sub_zero_pressure(self):
             global dummy
             dummy["Пластовое давление (ТР), атм"] = dummy["Пластовое давление (ТР), атм"].replace(0, np.nan).bfill()
+            dummy["Забойное давление (ТР), атм"] = dummy["Забойное давление (ТР), атм"].replace(0, np.nan).bfill()
+            dummy['депрессия'] = dummy.apply(
+                lambda x:
+                x['Пластовое давление (ТР), атм'] - x['Забойное давление (ТР), атм'], axis=1)
+            dummy = dummy.drop(dummy[dummy['депрессия'] <= 0].index)
+            dummy = dummy.drop('депрессия', axis=1)
 
         ui.pushButton_4.clicked.connect(sub_zero_pressure)
 
