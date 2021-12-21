@@ -7,7 +7,6 @@ from window1 import Ui_firstwindow
 from window2 import Ui_secondwindow
 
 
-
 app = QtWidgets.QApplication(sys.argv)
 first_window = QtWidgets.QWidget()
 ui = Ui_firstwindow()
@@ -15,10 +14,7 @@ ui.setupUi(first_window)
 first_window.show()
 
 
-
-
 class File_functions():
-
 
     def im_file(self):
         global file_name, data, date_column_name, target, dummy
@@ -28,7 +24,6 @@ class File_functions():
         date_column_name = r'Дата ВНР после ГС \\ ГРП \\ЗБГС'
         target = 'Скважина №'
         print(data.shape, dummy.shape, file_name, date_column_name)
-
 
     ui.pushButton.clicked.connect(im_file)
 
@@ -40,7 +35,6 @@ def open_second_window():
     ui.setupUi(second_window)
     first_window.close()
     second_window.show()
-
 
     class Plus_grp(File_functions):
         def add_grp(self):
@@ -73,7 +67,6 @@ def open_second_window():
             dummy = dummy.drop(date_column_name, axis=1)
 
         ui.pushButton.clicked.connect(add_grp)
-
 
     class Debit(File_functions):
         def delete_zero_debit(self):
@@ -113,7 +106,6 @@ def open_second_window():
 
         ui.pushButton_2.clicked.connect(delete_zero_debit)
 
-
     class History(File_functions):
         def red_small_hist(self):
             global dummy
@@ -132,7 +124,6 @@ def open_second_window():
 
         ui.pushButton_3.clicked.connect(red_small_hist)
 
-
     class Pressure(File_functions):
         def sub_zero_pressure(self):
             global dummy
@@ -146,8 +137,6 @@ def open_second_window():
 
         ui.pushButton_4.clicked.connect(sub_zero_pressure)
 
-
-
     def export_final():
         global dummy
         dummy = dummy.drop(['Index'], axis=1)
@@ -155,6 +144,7 @@ def open_second_window():
         print('yep')
 
     ui.pushButton_5.clicked.connect(export_final)
+
 
 ui.pushButton.clicked.connect(open_second_window)
 
