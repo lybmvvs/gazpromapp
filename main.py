@@ -39,7 +39,11 @@ def open_second_window():
     class Plus_grp(File_functions):
         def add_grp(self):
             global dummy,data
-            no_grp = data.groupby('Скважина №').agg(
+            data['для_грп'] = data.apply(
+                lambda x:
+                x['Скважина №'].partition('_')[0] if '_' in str(x['Скважина №'])
+                else x['Скважина №'], axis=1)
+            no_grp = data.groupby('для_грп').agg(
                 {'ГС/ННС': lambda x:
                 x.tolist()}
             )
@@ -49,14 +53,18 @@ def open_second_window():
                 0 if 'ГРП' not in str(x['ГС/ННС'])
                 else 1, axis=1)
             no_grp = no_grp.drop(no_grp[no_grp['ГРП?'] == 1].index)
-            spisok = no_grp['Скважина №'].tolist()
-            step = data.groupby(target).agg(
+            spisok = no_grp['для_грп'].tolist()
+            step = data.groupby('для_грп').agg(
                 {date_column_name: lambda x:
                 x.tolist()[0]
                 if len(x.tolist()) == 1 else x.tolist()[1]}
             )
             step.reset_index(inplace=True)
-            step = step[~step['Скважина №'].isin(spisok)].reset_index(drop=True)
+            step = step[~step['для_грп'].isin(spisok)].reset_index(drop=True)
+            vvv = step['для_грп'].tolist()
+
+            step['Скважина №'] = vvv
+            step = step.drop(['для_грп'], axis=1)
             dummy = dummy.merge(step, on=target)
             dummy[target] = dummy.apply(
                 lambda x:
@@ -103,6 +111,41 @@ def open_second_window():
             plast = str(z[0])
             dummy = dummy.drop(dummy[dummy['Пласт'] != plast].index).reset_index(
                 drop=True)
+            dummy_res_zero = dummy.drop(dummy[dummy['Пластовое давление (ТР), атм'] != 0].index)
+            dummy_res_zero = dummy_res_zero.groupby('Скважина №').agg(
+                {'Index': lambda x:
+                x.tolist()})
+            dummy_res_zero['нули_пласт'] = dummy_res_zero.apply(lambda x: len(x['Index']), axis=1)
+            dummy_res_zero = dummy_res_zero.drop(dummy_res_zero[dummy_res_zero['нули_пласт'] < 3].index)
+            # wells_del_both=dummy1['Index'].tolist()
+            delete_reservoir = []
+            for i in dummy_res_zero['Index']:
+                delete_reservoir += i
+            dummy = dummy[~dummy['Index'].isin(delete_reservoir)].reset_index(drop=True)
+
+            dummy_bore_zero = dummy.drop(dummy[dummy['Забойное давление (ТР), атм'] != 0].index)
+            dummy_bore_zero = dummy_bore_zero.groupby('Скважина №').agg(
+                {'Index': lambda x:
+                x.tolist()})
+            dummy_bore_zero['нули_заб'] = dummy_bore_zero.apply(lambda x: len(x['Index']), axis=1)
+            dummy_bore_zero = dummy_bore_zero.drop(dummy_bore_zero[dummy_bore_zero['нули_заб'] < 3].index)
+            # wells_del_both=dummy1['Index'].tolist()
+            delete_bore = []
+            for i in dummy_bore_zero['Index']:
+                delete_bore += i
+            dummy = dummy[~dummy['Index'].isin(delete_bore)].reset_index(drop=True)
+
+            dummy_40 = dummy[dummy['Пластовое давление (ТР), атм'].isna()]
+            dummy_40 = dummy_40.groupby('Скважина №').agg(
+                {'Index': lambda x:
+                x.tolist()})
+            dummy_40['na_пласт'] = dummy_40.apply(lambda x: len(x['Index']), axis=1)
+            dummy_40 = dummy_40.drop(dummy_40[dummy_40['na_пласт'] < 3].index)
+            # wells_del_both=dummy1['Index'].tolist()
+            del_plast = []
+            for i in dummy_40['Index']:
+                del_plast += i
+            dummy = dummy[~dummy['Index'].isin(del_plast)].reset_index(drop=True)
 
         ui.pushButton_2.clicked.connect(delete_zero_debit)
 
