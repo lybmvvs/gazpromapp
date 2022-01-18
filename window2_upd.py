@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'window2.ui'
+# Form implementation generated from reading ui file 'window2_upd.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -14,10 +14,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_secondwindow(object):
     def setupUi(self, secondwindow):
         secondwindow.setObjectName("secondwindow")
-        secondwindow.resize(529, 365)
+        secondwindow.resize(554, 394)
         secondwindow.setStyleSheet("\n"
 "QPushButton{\n"
-"background-color:white ;\n"
+"background-color:white;\n"
 "width:100px;\n"
 "length:200px;\n"
 "font-size: 14px;\n"
@@ -35,7 +35,7 @@ class Ui_secondwindow(object):
 "background-color:rgb(121, 173, 255);\n"
 "width:100px;\n"
 "length:200px;\n"
-"font-size: 11px;\n"
+"font-size: 10px;\n"
 "font-weight:bold;\n"
 "border:none;\n"
 "text-align:center;\n"
@@ -71,7 +71,7 @@ class Ui_secondwindow(object):
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout.addWidget(self.pushButton_4, 3, 1, 1, 1)
         self.pushButton_5 = QtWidgets.QPushButton(secondwindow)
-        self.pushButton_5.setGeometry(QtCore.QRect(140, 300, 251, 28))
+        self.pushButton_5.setGeometry(QtCore.QRect(140, 330, 251, 28))
         self.pushButton_5.setStyleSheet("\n"
 "QPushButton{\n"
 "background-color: rgb(255, 255, 53);\n"
@@ -90,6 +90,19 @@ class Ui_secondwindow(object):
 "}\n"
 "")
         self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(secondwindow)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(120, 30, 331, 31))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_5 = QtWidgets.QLabel(self.horizontalLayoutWidget)
+        self.label_5.setStyleSheet("")
+        self.label_5.setObjectName("label_5")
+        self.horizontalLayout_2.addWidget(self.label_5)
+        self.lineEdit = QtWidgets.QLineEdit(self.horizontalLayoutWidget)
+        self.lineEdit.setObjectName("lineEdit")
+        self.horizontalLayout_2.addWidget(self.lineEdit)
 
         self.retranslateUi(secondwindow)
         QtCore.QMetaObject.connectSlotsByName(secondwindow)
@@ -98,11 +111,12 @@ class Ui_secondwindow(object):
         _translate = QtCore.QCoreApplication.translate
         secondwindow.setWindowTitle(_translate("secondwindow", "Form"))
         self.label.setText(_translate("secondwindow", "Добавить \"_ГРП\" к номеру скважины:"))
-        self.label_2.setText(_translate("secondwindow", "! НАЖИМАТЬ ПЕРВОЙ! Удалить строки с нулевым дебитом:"))
-        self.label_3.setText(_translate("secondwindow", "!НАЖИМАТЬ ВТОРОЙ! Удалить скважины с короткой историей:"))
+        self.label_2.setText(_translate("secondwindow", "!НАЖИМАТЬ ПЕРВОЙ! Удалить строки с нулевым дебитом:"))
+        self.label_3.setText(_translate("secondwindow", "!НАЖИМАТЬ ВТОРОЙ! Удалить скважины с историей меньше 5 м.:"))
         self.label_4.setText(_translate("secondwindow", "Продлить пластовое значение, если оно нулевое:"))
         self.pushButton.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_2.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_3.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_4.setText(_translate("secondwindow", "Выполнить"))
         self.pushButton_5.setText(_translate("secondwindow", "Экспорт Excel файла"))
+        self.label_5.setText(_translate("secondwindow", "Пласт"))

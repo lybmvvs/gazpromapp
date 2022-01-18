@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from PyQt5 import QtWidgets
 from window1 import Ui_firstwindow
-from window2 import Ui_secondwindow
+from window2_upd import Ui_secondwindow
 
 
 app = QtWidgets.QApplication(sys.argv)
@@ -106,9 +106,10 @@ def open_second_window():
             dummy = dummy[~dummy['Index'].isin(delete_wellbore)].reset_index(drop=True)
 
             dummy = dummy.drop(dummy[dummy['Дебит нефти, т/сут'] == 0].index)
-            n = 1
-            z = dummy['Пласт'].value_counts()[:n].index.tolist()
-            plast = str(z[0])
+            #n = 1
+            #z = dummy['Пласт'].value_counts()[:n].index.tolist()
+            #plast = str(z[0])
+            plast = ui.lineEdit.text()
             dummy = dummy.drop(dummy[dummy['Пласт'] != plast].index).reset_index(
                 drop=True)
             dummy_res_zero = dummy.drop(dummy[dummy['Пластовое давление (ТР), атм'] != 0].index)
