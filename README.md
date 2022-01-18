@@ -8,6 +8,8 @@ where the **.exe** file locates.
 * Secondly print the **name** of your **.xlsx** file in input 
 field like *TYLE.xlsx*
 * Press buttons only **once**!
+* On the top of the second window you can find an empty input field where you can print the name of a layer you need to process.
+There is a word *Пласт* near there.
 * If you need to clear your file out of wells which have the history
 **less than 6 month** then you need to use the *Удалить скважины с 
 короткой историей* button. If you need this function **PRESS THIS BUTTON FIRST!**
@@ -31,6 +33,8 @@ field like *TYLE.xlsx*
 * Далее: ввести в поле для ввода текста название своего файла в виде
 *TYLE.xlsx*
 * Нажимайте кнопку только **один раз!**
+* В верхней части второго окна в пустом поле вы можте написать название объекта, который хотите обработать.
+Рядом с полем есть соответствующая надпись *Пласт*.
 * Если вам нужно убрать из вашего файла скважины, история работы которых
 **менее 6 месяцев**, то вам нужно обратиться к кнопке *Удалить скважины с 
 короткой историей*. Если вам нужна данная функция, **НАЖМИТЕ НА ЭТУ КНОПКУ ПЕРВОЙ!**
