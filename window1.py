@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_firstwindow(object):
     def setupUi(self, firstwindow):
         firstwindow.setObjectName("firstwindow")
-        firstwindow.resize(301, 233)
+        firstwindow.resize(301, 278)
         firstwindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         firstwindow.setStyleSheet("\n"
 "QPushButton{\n"
@@ -32,15 +32,7 @@ class Ui_firstwindow(object):
 "QPushButton:pressed{\n"
 "background-color:rgb(96, 255, 39);\n"
 "}\n"
-"QLabel{\n"
-"background-color:rgb(96, 255, 39);\n"
-"width:100px;\n"
-"length:200px;\n"
-"font-size: 14px;\n"
-"font-weight:bold;\n"
-"border:none;\n"
-"text-align:center;\n"
-"}\n"
+"\n"
 "\n"
 "")
         self.verticalLayoutWidget = QtWidgets.QWidget(firstwindow)
@@ -51,8 +43,14 @@ class Ui_firstwindow(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget)
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet("QLabel {\n"
-"text-align: center\n"
+        self.label.setStyleSheet("QLabel{\n"
+"background-color:rgb(96, 255, 39);\n"
+"width:100px;\n"
+"length:200px;\n"
+"font-size: 14px;\n"
+"font-weight:bold;\n"
+"border:none;\n"
+"text-align:center;\n"
 "}\n"
 "")
         self.label.setObjectName("label")
@@ -63,6 +61,19 @@ class Ui_firstwindow(object):
         self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout.addWidget(self.pushButton)
+        self.label_2 = QtWidgets.QLabel(firstwindow)
+        self.label_2.setGeometry(QtCore.QRect(80, 250, 221, 20))
+        self.label_2.setStyleSheet("QLabel{\n"
+"\n"
+"width:100px;\n"
+"length:200px;\n"
+"font-size: 12px;\n"
+"font-weight:bold;\n"
+"border:none;\n"
+"text-align:center;\n"
+"color: rgb(171, 171, 171)\n"
+"}")
+        self.label_2.setObjectName("label_2")
 
         self.retranslateUi(firstwindow)
         QtCore.QMetaObject.connectSlotsByName(firstwindow)
@@ -72,3 +83,4 @@ class Ui_firstwindow(object):
         firstwindow.setWindowTitle(_translate("firstwindow", "Form"))
         self.label.setText(_translate("firstwindow", "             Выберите Excel файл:"))
         self.pushButton.setText(_translate("firstwindow", "Импортировать"))
+        self.label_2.setText(_translate("firstwindow", "Автор-разработчик: Любимов В.С."))
