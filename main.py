@@ -21,8 +21,14 @@ class File_functions():
         file_name = ui.lineEdit.text()
         data = pd.read_excel(file_name, sheet_name='ГРП')
         dummy = pd.read_excel(file_name, sheet_name='МЭР')
-        date_column_name = r'Дата ВНР после ГС \\ ГРП \\ЗБГС'
+        date_column_name = 'Дата ВНР после'
         target = 'Скважина №'
+        data['Скважина №'] = data.apply(
+            lambda x:
+            str(x['Скважина №']), axis=1)
+        dummy['Скважина №'] = dummy.apply(
+            lambda x:
+            str(x['Скважина №']), axis=1)
         print(data.shape, dummy.shape, file_name, date_column_name)
 
     ui.pushButton.clicked.connect(im_file)
