@@ -49,6 +49,13 @@ def open_second_window():
                 lambda x:
                 x['Скважина №'].partition('_')[0] if '_' in str(x['Скважина №'])
                 else x['Скважина №'], axis=1)
+            # важно: убираем скважины с фраками/ннс оставляем только грп
+            data['fix'] = data.apply(
+                lambda x:
+                1 if 'ГРП' in str(x['Скважина №'])
+                else 0, axis=1)
+            data = data.drop(data[data['fix'] == 0].index)
+            # важно
             no_grp = data.groupby('для_грп').agg(
                 {'ГС/ННС': lambda x:
                 x.tolist()}
@@ -63,7 +70,7 @@ def open_second_window():
             step = data.groupby('для_грп').agg(
                 {date_column_name: lambda x:
                 x.tolist()[0]
-                if len(x.tolist()) == 1 else x.tolist()[1]}
+                }
             )
             step.reset_index(inplace=True)
             step = step[~step['для_грп'].isin(spisok)].reset_index(drop=True)
