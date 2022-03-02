@@ -71,7 +71,7 @@ def open_second_window():
 
             step['Скважина №'] = vvv
             step = step.drop(['для_грп'], axis=1)
-            dummy = dummy.merge(step, on=target)
+            dummy = dummy.merge(step, on=target, how='left')
             if dummy.shape[0] != 0:
                 dummy[target] = dummy.apply(
                 lambda x:
