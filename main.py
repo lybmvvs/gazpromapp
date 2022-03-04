@@ -2,6 +2,7 @@ import sys
 import datetime
 import pandas as pd
 import numpy as np
+import copy
 from PyQt5 import QtWidgets
 from window1 import Ui_firstwindow
 from window2_upd import Ui_secondwindow
@@ -45,6 +46,40 @@ def open_second_window():
     class Plus_grp(File_functions):
         def add_grp(self):
             global dummy,data
+            data_L = copy.deepcopy(data)
+            data_L['удалю'] = data_L.apply(
+                lambda x:
+                'нет' if 'Л' in str(x['Скважина №'])
+                else 'да', axis=1)
+            data_L = data_L.drop(data_L[data_L['удалю'] == 'да'].index).reset_index(drop=True)
+            data_L = data_L.drop(['удалю'], axis=1)
+            data_L['для_грп'] = data_L.apply(
+                lambda x:
+                x['Скважина №'].partition('_')[0] if '_' in str(x['Скважина №'])
+                else x['Скважина №'], axis=1)
+            data_L = data_L.groupby('для_грп').agg(
+                {date_column_name: lambda x:
+                x.tolist()[-1]})
+            data_L.reset_index(inplace=True)
+            wells_L = data_L['для_грп'].tolist()
+            data_L['Скважина №'] = wells_L
+            data_L = data_L.drop(['для_грп'], axis=1)
+            data_L['Скважина №'] = data_L.apply(
+                lambda x:
+                str(x['Скважина №']).replace('Л', ''),
+                axis=1
+            )
+            dummy = dummy.merge(data_L, on=target, how='left')
+            if dummy.shape[0] != 0:
+                dummy[target] = dummy.apply(
+                    lambda x:
+                    str(x[target])
+                    + ('Л' if x['Дата'] <= x[date_column_name] else ''),
+                    axis=1
+                )
+            dummy = dummy.drop(date_column_name, axis=1)
+
+
             data['для_грп'] = data.apply(
                 lambda x:
                 x['Скважина №'].partition('_')[0] if '_' in str(x['Скважина №'])
