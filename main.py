@@ -121,6 +121,13 @@ def open_second_window():
                 + ('_ГРП' if x['Дата'] > x[date_column_name] else ''),
                 axis=1
                 )
+            if dummy.shape[0] != 0:
+                dummy[target] = dummy.apply(
+                    lambda x:
+                    str(x[target])
+                    + ('_ГРП' if str(x['Дата'])[:7] in str(x[date_column_name]) else ''),
+                    axis=1
+                )
             dummy = dummy.drop(date_column_name, axis=1)
 
         ui.pushButton.clicked.connect(add_grp)
@@ -135,8 +142,8 @@ def open_second_window():
                 {'Index': lambda x:
                 x.tolist()})
             dummy1['кол'] = dummy1.apply(lambda x: len(x['Index']), axis=1)
-            dummy1 = dummy1.drop(dummy1[dummy1['кол'] < 3].index)
-
+            #dummy1 = dummy1.drop(dummy1[dummy1['кол'] < 3].index)
+            dummy1 = dummy1.drop(dummy1[dummy1['кол'] < 12].index)
             delete = []
             for i in dummy1['Index']:
                 delete += i
@@ -147,7 +154,8 @@ def open_second_window():
                 {'Index': lambda x:
                 x.tolist()})
             dummy2['забойки'] = dummy2.apply(lambda x: len(x['Index']), axis=1)
-            dummy2 = dummy2.drop(dummy2[dummy2['забойки'] < 3].index)
+            #dummy2 = dummy2.drop(dummy2[dummy2['забойки'] < 3].index)
+            dummy2 = dummy2.drop(dummy2[dummy2['забойки'] < 12].index)
             # wells_del_both=dummy1['Index'].tolist()
             delete_wellbore = []
             for i in dummy2['Index']:
@@ -166,7 +174,8 @@ def open_second_window():
                 {'Index': lambda x:
                 x.tolist()})
             dummy_res_zero['нули_пласт'] = dummy_res_zero.apply(lambda x: len(x['Index']), axis=1)
-            dummy_res_zero = dummy_res_zero.drop(dummy_res_zero[dummy_res_zero['нули_пласт'] < 3].index)
+            #dummy_res_zero = dummy_res_zero.drop(dummy_res_zero[dummy_res_zero['нули_пласт'] < 3].index)
+            dummy_res_zero = dummy_res_zero.drop(dummy_res_zero[dummy_res_zero['нули_пласт'] < 12].index)
             # wells_del_both=dummy1['Index'].tolist()
             delete_reservoir = []
             for i in dummy_res_zero['Index']:
@@ -178,7 +187,8 @@ def open_second_window():
                 {'Index': lambda x:
                 x.tolist()})
             dummy_bore_zero['нули_заб'] = dummy_bore_zero.apply(lambda x: len(x['Index']), axis=1)
-            dummy_bore_zero = dummy_bore_zero.drop(dummy_bore_zero[dummy_bore_zero['нули_заб'] < 3].index)
+            #dummy_bore_zero = dummy_bore_zero.drop(dummy_bore_zero[dummy_bore_zero['нули_заб'] < 3].index)
+            dummy_bore_zero = dummy_bore_zero.drop(dummy_bore_zero[dummy_bore_zero['нули_заб'] < 12].index)
             # wells_del_both=dummy1['Index'].tolist()
             delete_bore = []
             for i in dummy_bore_zero['Index']:
@@ -190,7 +200,8 @@ def open_second_window():
                 {'Index': lambda x:
                 x.tolist()})
             dummy_40['na_пласт'] = dummy_40.apply(lambda x: len(x['Index']), axis=1)
-            dummy_40 = dummy_40.drop(dummy_40[dummy_40['na_пласт'] < 3].index)
+            #dummy_40 = dummy_40.drop(dummy_40[dummy_40['na_пласт'] < 3].index)
+            dummy_40 = dummy_40.drop(dummy_40[dummy_40['na_пласт'] < 12].index)
             # wells_del_both=dummy1['Index'].tolist()
             del_plast = []
             for i in dummy_40['Index']:
